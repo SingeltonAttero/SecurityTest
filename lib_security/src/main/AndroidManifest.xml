@@ -1,0 +1,13 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="ru.yweber.lib_security">
+
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!--need permission in api < 19 -->
+
+    <application>
+        <service
+            android:name=".service.SaveLogService"
+            android:exported="true"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+    </application>
+
+</manifest>
