@@ -12,11 +12,13 @@
   1. `app` содержит тестовое приложения  
   2. `lib_security` содержит библиотеку по сбору логов
   
-#####для запуска сбора логов нужно в субклассе  `Application`  выполнить код 
-    `override fun onCreate() {
+#####для запуска сбора логов нужно в субклассе  `Application`  выполнить код
+
+ 
+    override fun onCreate() {
         super.onCreate()
         SecurityInitialize(this)
-    }`
+    }
     
     
 ### Структура модуля `lib_security`
@@ -26,7 +28,7 @@
 * package `utils` служебные классы для формирования структуры логов
 * class `SecurityInitialize` необходим для запуска сбора логов
 
-##### путь сохранения лого `~/android/data/"app package"/logs`
+##### путь сохранения `~/android/data/"app package"/logs`
    
  
 
