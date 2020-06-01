@@ -21,8 +21,7 @@ import java.util.*
  * @author YWeber */
 
 class SimpleFormatterTreeLogger(
-    private val application: Application,
-    private val eventInterceptor: View.OnTouchListener = TouchEventInterceptor(application)
+        private val application: Application
 ) : TreeLogger {
 
     override fun createTreeLogInActivity(activity: Activity) {
@@ -49,12 +48,11 @@ class SimpleFormatterTreeLogger(
 
     private fun createTreeViewLog(rootView: ViewGroup, strBuilder: StringBuilder, type: String): String {
         strBuilder.tb()
-            .sp("$type : { type : ${rootView.javaClass.simpleName} id : ${rootView.id} }")
-            .tb()
+                .sp("$type : { type : ${rootView.javaClass.simpleName} id : ${rootView.id} }")
+                .tb()
 
         val listChildren: Sequence<View> = rootView.children
         listChildren.forEach {
-            it.setOnTouchListener(eventInterceptor)
             strBuilder.br()
             when (it) {
                 is ViewGroup -> {
@@ -67,33 +65,33 @@ class SimpleFormatterTreeLogger(
                 is TextView -> {
                     strBuilder.tb().sp("TextView :").hooks { builder ->
                         builder
-                            .sp("type : ${it.javaClass.simpleName} id : ${it.id}")
-                            .sp("text : ${it.text}")
+                                .sp("type : ${it.javaClass.simpleName} id : ${it.id}")
+                                .sp("text : ${it.text}")
                     }
                 }
                 is Button -> {
                     strBuilder
-                        .tb()
-                        .sp("Button :")
-                        .hooks { builder ->
-                            builder
-                                .sp("type : ${it.javaClass.simpleName} id : ${it.id} ")
-                                .sp("text : ${it.text}")
-                        }
+                            .tb()
+                            .sp("Button :")
+                            .hooks { builder ->
+                                builder
+                                        .sp("type : ${it.javaClass.simpleName} id : ${it.id} ")
+                                        .sp("text : ${it.text}")
+                            }
                 }
                 is ImageView -> {
                     strBuilder
-                        .tb()
-                        .sp("ImageView :").hooks { builder ->
-                            builder
-                                .sp("type : ${it.javaClass.simpleName} id : ${it.id} ")
-                                .sp("contentDescription : ${it.contentDescription}")
-                        }
+                            .tb()
+                            .sp("ImageView :").hooks { builder ->
+                                builder
+                                        .sp("type : ${it.javaClass.simpleName} id : ${it.id} ")
+                                        .sp("contentDescription : ${it.contentDescription}")
+                            }
                 }
                 else -> {
                     strBuilder
-                        .tb()
-                        .sp("View : { type : ${it.javaClass.simpleName} id : ${it.id} }")
+                            .tb()
+                            .sp("View : { type : ${it.javaClass.simpleName} id : ${it.id} }")
                 }
             }
         }
