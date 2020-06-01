@@ -18,7 +18,7 @@ class SecondActivity : AppCompatActivity(R.layout.activity_second) {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        // // Examples click interceptor use our the project
+        // Examples click interceptor use our the project
         log.interceptClickListener(tvTest1)
         log.interceptClickListener(tvTest2, click = {
             // TODO handle click
