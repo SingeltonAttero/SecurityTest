@@ -8,27 +8,27 @@
 * время установки OS Android на устройство
 * дата первого запуска приложения 
 
-### репозиторий содержит 2 модуля 
+### Репозиторий содержит 2 модуля 
   1. `app` содержит тестовое приложения  
   2. `lib_security` содержит библиотеку по сбору логов
   
-#### для запуска сбора логов по дереву view нужно в субклассе  `Application`  выполнить код
+#### Для запуска сбора логов по дереву view нужно в субклассе  `Application`  выполнить код
     override fun onCreate() {
         super.onCreate()
         SecurityInitialize(this)
     }
     
-### для запуска сбора действий пользователя в activity необходимо зарегистрировать эти действия
-#### создать перехватчик в activity 
+### Для запуска сбора действий пользователя в activity необходимо зарегистрировать эти действия
+#### Создать перехватчик в activity 
     class MainActivity : AppCompatActivity() {
         private val log by lazy { TouchEventInterceptor(this)
     }
-#### для регистрации общих событий необходимо в методе `dispatchTouchEvent` вызвать `log.commonTouch` передав `MotionEvent`
+#### Для регистрации общих событий необходимо в методе `dispatchTouchEvent` вызвать `log.commonTouch` передав `MotionEvent`
     override fun dispatchTouchEvent(ev: MotionEvent): Boolean {
         log.commonTouch(ev)
         return super.dispatchTouchEvent(ev)
     }
-#### для регистрации конкретных действий вызываем `interceptTouchListener` и `interceptClickListener` передав необходимые параметры 
+#### Для регистрации конкретных действий вызываем `interceptTouchListener` и `interceptClickListener` передав необходимые параметры 
         // Examples touch interceptor use our the project
         log.interceptTouchListener(btnNext) // specific log on view
 
